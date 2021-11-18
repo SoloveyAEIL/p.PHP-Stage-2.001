@@ -20,7 +20,10 @@
         <p>Категории:</p>
         <a href="http://projectz.by/cat/films">Фильмы</a>
         <a href="http://projectz.by/cat/serials">Сериалы</a>
+        <a id="main_reglog" href="http://projectz.by/register">Регистрация</a>
+        <a href="http://projectz.by/login">Авторизация</a>
     </div>
+    <hr>
     <div>
         <?php echo main_block(); ?>
     </div>
@@ -30,6 +33,9 @@
     }
     .main_cat > a {
         padding-right: 3%;
+    }
+    #main_reglog {
+        padding-left: 54%;
     }
 
     .block_main2 {

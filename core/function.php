@@ -23,6 +23,59 @@ function getCategoryArticle($cid) {
     return select($query);
 }
 
+    //  проверка, существ ли пользоваьель (логин)
+function isLoginExist($login) {
+    $query = "SELECT id FROM users WHERE login='".$login."'";
+    $result = select($query);
+    // var_dump($result);           //  для проверки работоспособности
+    if ( count($result) === 0) return false;
+    return true;
+}
+
+    // регистрация пользователя
+function createUser($login, $password) {
+    $password = md5(md5(trim($password)));      // кешируем пароль(дважды) / trim -- удаление спец.символов
+    $login = trim($login);
+    $query = "INSERT INTO users SET login='".$login."', password='".$password."'";
+    return execQuery($query);
+}
+
+    // авторизация пользователя
+function login($login, $password) {
+    $password = md5(md5(trim($password)));      // кешируем пароль(дважды) / trim -- удаление спец.символов
+    $login = trim($login);
+    $query = "SELECT id, login FROM users WHERE login='".$login."' AND password='".$password."'";
+    // var_dump($query);
+    $result = select($query);
+    if ( count($result) != 0) return $result;
+    return false;
+}
+
+    // генерация кода для хеша / делать случайные символы
+function generateCode($length = 7) {
+    $chars = "qazwsxedcrfvtgbyhnujmikolpQAZWSXEDCRFVTGBYHNUJMIKOLP0123456789";
+    $code ="";
+    $clen = strlen($chars)-1;
+    while(strlen($code) < $length) {
+        $code.=$chars[mt_rand(0, $clen)];
+    }
+    return $code;
+}
+
+    // обновление пользоателя по данным (ip, hash, id)
+function updateUser($id, $hash, $ip) {
+    if (is_null($ip)) {                 // проверка, не явл ли ip = 0
+        $query = "UPDATE users SET hash='".$hash."' WHERE id=".$id;         // если ip = 0
+    } else {
+        //  если хотим хранить данн в БД, то пользуемся INET_ATON($ip)
+        $query = "UPDATE users SET hash='".$hash."', ip=INET_ATON('".$ip."') WHERE id=".$id;
+    }
+    return execQuery($query);
+}
+
+
+///////////////////////////////////////////////////////////////// блоки
+
 function main_block() {
     global $result;
     $out = '';
@@ -54,7 +107,7 @@ function main_block_article() {
 }
 
 function main_block_cat() {
-    global $result, $cat;
+    global $cat;
     $out = '';
 
         $out .="<div class='block_main2'>";
