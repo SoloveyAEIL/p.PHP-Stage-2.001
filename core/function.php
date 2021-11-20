@@ -73,6 +73,44 @@ function updateUser($id, $hash, $ip) {
     return execQuery($query);
 }
 
+    // проверка в админ панеле, на юзера
+function getUser() {
+    if (isset($_COOKIE['id']) AND isset($_COOKIE['hash'])) {
+        $query = "SELECT id, login, hash, INET_ATON(ip) as ip FROM users WHERE id=".intval($_COOKIE['id'])." LIMIT 1";
+        $user = select($query);     // проверка, есть ли user с таким id
+        // проверка, есть ли user такой в БД
+        if (count($user) === 0) {
+            return false;
+        } else {
+            $user = $user[0];   // есть такой user
+            // проверка совпадение hash and cookie
+            if ($user['hash'] !== $_COOKIE['hash']) {
+                clearCookies();
+                return false;
+            }
+            // проверка по ip
+            if (!is_null($user['ip'])) {
+                if ($user['ip'] !== $_SERVER['REMOTE_ADDR']) {
+                    clearCookies();
+                    return false;
+                }
+            }
+            $_GET['login'] = $user['login'];
+            return true;
+        }
+    } else {
+        clearCookies();
+        return false;
+    }
+}
+
+    // очистка кукки
+function clearCookies() {
+    setcookie('id', "", time()-60*60*24*30, "/");  
+    setcookie('hash', "", time()-60*60*24*30, "/", null, null, true);       // просмотреть параметры!!!
+    unset($_GET['login']);         // удаление()
+}
+
 
 ///////////////////////////////////////////////////////////////// блоки
 
@@ -115,5 +153,18 @@ function main_block_cat() {
         $out .="<p class='disp'>Описание: ".$cat['description']."</p>";
         $out .="</div>";
 
+    echo $out;
+}
+
+function main_block_admin() {
+    global $result;
+    $out = '';
+    for($i=0; $i < count($result); $i++) {
+        $out .="<div class='block_main2'>";
+        $out .="<p>".$result[$i]['title']."</p>";
+        $out .="<img src=".$result[$i]['image']." height='100' width='100'>";
+        $out .='<a href="/admin/delete/'.$result[$i]['id'].'" onclick="return confirm(\'точно?\')">Удалить</a>';
+        $out .="</div>";
+    }
     echo $out;
 }
