@@ -32,15 +32,24 @@ switch ($route) {
     case ($route[0] == 'login'):
         require_once 'template/login.php';
         break;
-    // проверка пользователя, в данной ссылке
+    // проверка пользователя, в данной ссылке + удаление статей
     case ($route[0] == 'admin' AND $route[1] === 'delete' AND isset($route[2])):
         if (getUser()) {
             $query = "DELETE FROM info WHERE id=".$route[2];    
-            $result = execQuery($query);
+            $result = execQuery($query);        // можно и без $result
             header ("Location: /admin");
             exit();
         }
         header ("Location: /");
+        break;
+    // проверка пользователя, в данной ссылке + создание статей
+    case ($route[0] == 'admin' AND $route[1] === 'create'):
+        if (getUser()) {
+            $query = "SELECT id, title FROM category";    
+            $category = select($query);            
+            require_once 'template/create.php';
+            }
+        // header ("Location: /");
         break;
     case ($route[0] == 'admin'):
         $query = "SELECT * FROM info";

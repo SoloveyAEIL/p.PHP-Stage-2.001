@@ -112,6 +112,12 @@ function clearCookies() {
 }
 
 
+    // добавление через admin create
+function createArticle($title, $url, $descr_min, $description, $cid, $image) {
+    $query = "INSERT INTO info (title, url, descr_min, description, cid, image) VALUES('".$title."', '".$url."', '".$descr_min."', '".$description."', ".$cid.", '".$image."' )";
+    return execQuery($query);
+}
+
 ///////////////////////////////////////////////////////////////// блоки
 
 function main_block() {

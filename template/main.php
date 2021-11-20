@@ -22,6 +22,7 @@
         <a href="http://projectz.by/cat/serials">Сериалы</a>
         <a id="main_reglog" href="http://projectz.by/register">Регистрация</a>
         <a href="http://projectz.by/login">Авторизация</a>
+        <a href="http://projectz.by/admin">Кабинет</a>
     </div>
     <hr>
     <div>
@@ -35,7 +36,7 @@
         padding-right: 3%;
     }
     #main_reglog {
-        padding-left: 54%;
+        padding-left: 44%;
     }
 
     .block_main2 {
