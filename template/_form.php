@@ -22,7 +22,7 @@
     <p>Photo: <input type="file" name="image" value="<?php echo $result['image']; ?>"></p>
     <?php
         if (isset($result['image']) AND $result['image'] !="") {
-            echo '<img src="/static/images/'.$result['image'].'">';
+            echo '<img src="/static/images/'.$result['image'].'" style="wigth:150px">';
         }
     ?>
     <p><input type="submit" name="submit" value="<?php echo $action; ?>"></p>

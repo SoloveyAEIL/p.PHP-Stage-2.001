@@ -118,6 +118,20 @@ function createArticle($title, $url, $descr_min, $description, $cid, $image) {
     return execQuery($query);
 }
 
+    // update чепез admin 
+function updateArticle($id, $title, $url, $descr_min, $description, $cid, $image) {
+    global $id;
+    $query = "UPDATE info SET title='".$title."', url='".$url."', descr_min='".$descr_min."', description='".$description."', cid=".$cid.", image='".$image."' WHERE id=".$id;
+    return execQuery($query);
+}
+
+    // logout
+function logout() {
+    clearCookies();             // очитска кукки
+    header("Location: /");      // вывод наглавную страницу
+    exit;
+}
+
 ///////////////////////////////////////////////////////////////// блоки
 
 function main_block() {
@@ -127,7 +141,7 @@ function main_block() {
         $out .="<div class='block_main2'>";
         $out .="<h4>".$result[$i]['title']."</h4>";
         $out .="<p class='p_disp'>".$result[$i]['descr_min']."</p>";
-        $out .="<img src=".$result[$i]['image']." height='100' width='100'>";
+        $out .='<img src="/static/images/'.$result[$i]['image'].'" height="120" width="120" >';
         $out .="<p class='disp'>".$result[$i]['description']."</p>";
         $out .='<a href="/article/'.$result[$i]['url'].'
         ">Читать полностью</a>';
@@ -143,7 +157,7 @@ function main_block_article() {
         $out .="<div class='block_main2'>";
         $out .="<h4>".$result['title']."</h4>";
         $out .="<p class='p_disp'>".$result['descr_min']."</p>";
-        $out .="<img src=".$result['image'].">";
+        $out .='<img src="/static/images/'.$result['image'].'" height="250" width="210" >';
         $out .="<p class='disp'>".$result['description']."</p>";
         $out .="</div>";
 
@@ -168,8 +182,9 @@ function main_block_admin() {
     for($i=0; $i < count($result); $i++) {
         $out .="<div class='block_main2'>";
         $out .="<p>".$result[$i]['title']."</p>";
-        $out .="<img src=".$result[$i]['image']." height='100' width='100'>";
-        $out .='<a href="/admin/delete/'.$result[$i]['id'].'" onclick="return confirm(\'точно?\')">Удалить</a>';
+        $out .='<img src="/static/images/'.$result[$i]['image'].'" height="100" width="100" >';
+        $out .='<div><a href="/admin/delete/'.$result[$i]['id'].'" onclick="return confirm(\'точно?\')">Удалить</a></div>';
+        $out .='<div><a href="/admin/update/'.$result[$i]['id'].'" >Обновить</a></div>';
         $out .="</div>";
     }
     echo $out;
