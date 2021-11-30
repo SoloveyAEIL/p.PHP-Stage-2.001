@@ -41,5 +41,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-<h1>Create:</h1>
+<h1 style="text-align: center;">Create:</h1>
+<hr>
+<a style="margin-left: 75%" href="admin/">Back</a>
 <?php require_once '_form.php'; ?>

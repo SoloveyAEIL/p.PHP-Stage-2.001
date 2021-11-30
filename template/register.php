@@ -24,11 +24,40 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-<a href="http://projectz.by">Вернуться на главную страницу</a>
+
 <h2>Регистрация</h2>
 <hr>
+<a href="/">Главная страница</a>
+<div class="reg">
 <form method="POST">
-    Login: <input type="text" name="login" required><br>
-    Password: <input type="text" name="password" required><br>
-    <input type="submit" name="submit" value="Регистрация">
+    <p>Login: <input id="p_reg" type="text" name="login" required></p>
+    <p>Password: <input type="password" name="password" required></p>
+    <input id="inp_reg" type="submit" name="submit" value="Регистрация">
 </form>
+</div>
+
+<style>
+    h2 {
+        text-align: center;
+    }
+    a {
+        margin-left: 75%;
+    }
+    .reg {
+        border: solid 1px black;
+        margin: 5% 15%;
+        padding: 1% 20%;
+    }
+    p {
+        font-weight: bold;
+    }
+    input {
+        margin-left: 20px;
+    }
+    #p_reg {
+        margin-left: 47px;
+    }
+    #inp_reg {
+        margin-left: 35%;
+    }
+</style>

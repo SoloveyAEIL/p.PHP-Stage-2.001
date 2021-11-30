@@ -181,10 +181,12 @@ function main_block_admin() {
     $out = '';
     for($i=0; $i < count($result); $i++) {
         $out .="<div class='block_main2'>";
-        $out .="<p>".$result[$i]['title']."</p>";
-        $out .='<img src="/static/images/'.$result[$i]['image'].'" height="100" width="100" >';
-        $out .='<div><a href="/admin/delete/'.$result[$i]['id'].'" onclick="return confirm(\'точно?\')">Удалить</a></div>';
-        $out .='<div><a href="/admin/update/'.$result[$i]['id'].'" >Обновить</a></div>';
+        $out .="<p id='main_title'>".$result[$i]['title']."</p>";
+        $out .='<img src="/static/images/'.$result[$i]['image'].'" 
+        height="100" width="100" >';
+        $out .="<p class='disp'>".$result[$i]['description']."</p>";
+        $out .='<div class="block_a"><a href="/admin/delete/'.$result[$i]['id'].'" onclick="return confirm(\'точно?\')">Удалить</a>';
+        $out .='<a style="padding-left: 5%" href="/admin/update/'.$result[$i]['id'].'" >Обновить</a></div>';
         $out .="</div>";
     }
     echo $out;

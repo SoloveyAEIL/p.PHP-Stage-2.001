@@ -40,6 +40,7 @@ if (isset($_COOKIE['alert'])) {
 }
 ?>
 
-<h1>Update:</h1>
-<a href="/admin">Back</a>
+<h1 style="text-align: center;">Update:</h1>
+<hr>
+<a style="margin-left: 75%;" href="/admin">Back</a>
 <?php require_once '_form.php'; ?>

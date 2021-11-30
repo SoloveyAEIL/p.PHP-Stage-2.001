@@ -6,6 +6,24 @@
     }
 
 ?>
+<style>
+    h1 {
+        text-align: center;
+    }
+    .block_main2 {
+        border: solid 1px black;
+        margin: 10px 50px;
+        padding: 1% 3%;
+    }
+    .block_a {
+        text-align: center;
+    }
+    #main_title {
+        font-weight: bold;
+        padding-left: 5%;
+    }
+
+</style>
 
 <h1>Admin panel</h1>
 <hr>
