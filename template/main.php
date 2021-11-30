@@ -18,11 +18,11 @@
 <body>
     <div class="main_cat">
         <p>Категории:</p>
-        <a href="http://projectz.by/cat/films">Фильмы</a>
-        <a href="http://projectz.by/cat/serials">Сериалы</a>
-        <a id="main_reglog" href="http://projectz.by/register">Регистрация</a>
-        <a href="http://projectz.by/login">Авторизация</a>
-        <a href="http://projectz.by/admin">Кабинет</a>
+        <a href="/cat/films">Фильмы</a>
+        <a href="/cat/serials">Сериалы</a>
+        <a id="main_reglog" href="/register">Регистрация</a>
+        <a href="/login">Авторизация</a>
+        <a href="/admin">Кабинет</a>
     </div>
     <hr>
     <div>

@@ -6,6 +6,15 @@
     }
 
 ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Панель</title>
+</head>
+<body>
 <style>
     h1 {
         text-align: center;
@@ -30,9 +39,11 @@
 <div style="text-align: center;">
     <a href="/admin/create">Create block</a>
     <a href="/logout" style="padding-left: 5%;" >Logout</a>
-    <a href="http://projectz.by" style="padding-left: 15%;">На главную страницу</a>
+    <a href="/" style="padding-left: 15%;">На главную страницу</a>
 </div>
 
 <div>
     <?php echo main_block_admin() ?>
 </div>
+</body>
+</html>

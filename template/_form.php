@@ -1,4 +1,15 @@
 <!-- enctype='multipart/form-data тип кодировки, который позволяет отправлять файлы через POST . Проще говоря, без этой кодировки файлы не могут быть отправлены через POST . Если вы хотите разрешить пользователю загружать файл через форму, вы должны использовать этот enctype . -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма</title>
+</head>
+<body>
+    
+
 <div class="main_form">
 <form action="" method="POST" enctype="multipart/form-data">
     <p> Title(название): <input type="text" name="title" value="<?php echo $result['title']; ?>"></p>
@@ -51,3 +62,6 @@
         margin-left: 100px;
     }
 </style>
+
+</body>
+</html>

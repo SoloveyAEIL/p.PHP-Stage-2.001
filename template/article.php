@@ -18,7 +18,7 @@
 <body>
     <div>
         <?php echo main_block_article(); ?>
-        <a href="http://projectz.by">Вернуться на главную страницу</a>
+        <a href="/">Вернуться на главную страницу</a>
     </div>
     
 
